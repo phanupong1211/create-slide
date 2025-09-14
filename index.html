@@ -142,8 +142,12 @@
                                     <input type="text" id="supervisor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="เช่น คุณสุนิสา วงศ์ใหญ่">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">อายุงาน (ไม่บังคับ)</label>
-                                    <input type="text" id="workExperience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="เช่น 3 ปี 8 เดือน">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">วันที่เริ่มงาน</label>
+                                    <input type="date" id="startDate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">อายุงาน (คำนวณอัตโนมัติ)</label>
+                                    <input type="text" id="workExperience" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50" placeholder="จะคำนวณอัตโนมัติเมื่อใส่วันที่เริ่มงาน" readonly>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">ปีที่นำเสนอ</label>
@@ -156,33 +160,33 @@
 
                 <!-- Q1 Tab -->
                 <div class="tab-content" id="q1-tab">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 ผลงาน Q1 (มกราคม - มีนาคม)</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🔧 งานซ่อม Q1 (มกราคม - มีนาคม)</h2>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="form-section bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-purple-800 mb-4">📊 ผลงานหลัก</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">🔧 งานซ่อมบำรุงหลัก</h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q1</label>
-                                    <textarea id="q1Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="เช่น:
-• เพิ่มยอดขายได้ 125% ของเป้าหมาย
-• ขยายฐานลูกค้าใหม่ 15,000 ราย
-• เปิดตัวสินค้าใหม่ 3 รายการสำเร็จ
-• ได้รับรางวัล Best Campaign Q1"></textarea>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">งานซ่อมเด่น Q1</label>
+                                    <textarea id="q1Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น:
+• ซ่อมวาล์วควบคุมแรงดัน 25 ตัว
+• เปลี่ยนซีลวาล์วหลัก 15 ชุด
+• ตรวจสอบระบบท่อ 500 เมตร
+• ซ่อมวาล์วนิรภัย 8 ตัว"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-section bg-gradient-to-r from-orange-50 to-orange-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-orange-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">🖼️ รูปภาพประกอบ</h3>
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q1 (เลือกได้หลายรูป)</label>
-                                    <input type="file" id="q1Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                    <input type="file" id="q1Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
                                     <div class="text-xs text-gray-500 mt-1">สามารถเลือกหลายรูปพร้อมกันได้</div>
                                     <div id="q1ImagePreview" class="mt-4 grid grid-cols-2 gap-2"></div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
-                                    <input type="text" id="q1ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="เช่น งาน Product Launch Event">
+                                    <input type="text" id="q1ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น งานซ่อมวาล์วหลัก">
                                 </div>
                             </div>
                         </div>
@@ -191,33 +195,33 @@
 
                 <!-- Q2 Tab -->
                 <div class="tab-content" id="q2-tab">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🚀 ผลงาน Q2 (เมษายน - มิถุนายน)</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">⚙️ งานซ่อม Q2 (เมษายน - มิถุนายน)</h2>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="form-section bg-gradient-to-r from-cyan-50 to-cyan-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-cyan-800 mb-4">📊 ผลงานหลัก</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">⚙️ งานซ่อมบำรุงหลัก</h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q2</label>
-                                    <textarea id="q2Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent" placeholder="เช่น:
-• เปิดตัว Summer Campaign - ยอดขาย 3.2M
-• จัด Influencer Marketing กับ 15 คน
-• พัฒนา Mobile App ใหม่ - Download 50K
-• ขยายช่องทางขาย Online 3 Platform"></textarea>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">งานซ่อมเด่น Q2</label>
+                                    <textarea id="q2Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น:
+• ซ่อมวาล์วลูกลื่น 30 ตัว
+• เปลี่ยนอะไหล่วาล์วเก่า 20 ชุด
+• ตรวจสอบระบบไฮดรอลิก 12 จุด
+• ซ่อมวาล์วปิด-เปิด 18 ตัว"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-section bg-gradient-to-r from-pink-50 to-pink-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-pink-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">🖼️ รูปภาพประกอบ</h3>
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q2 (เลือกได้หลายรูป)</label>
-                                    <input type="file" id="q2Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                    <input type="file" id="q2Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
                                     <div class="text-xs text-gray-500 mt-1">สามารถเลือกหลายรูปพร้อมกันได้</div>
                                     <div id="q2ImagePreview" class="mt-4 grid grid-cols-2 gap-2"></div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
-                                    <input type="text" id="q2ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent" placeholder="เช่น Summer Campaign Launch">
+                                    <input type="text" id="q2ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น งานซ่อมวาล์วลูกลื่น">
                                 </div>
                             </div>
                         </div>
@@ -226,33 +230,33 @@
 
                 <!-- Q3 Tab -->
                 <div class="tab-content" id="q3-tab">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">⭐ ผลงาน Q3 (กรกฎาคม - กันยายน)</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🛠️ งานซ่อม Q3 (กรกฎาคม - กันยายน)</h2>
                     <div class="grid md:grid-cols-2 gap-6">
-                        <div class="form-section bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-emerald-800 mb-4">📊 ผลงานหลัก</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">🛠️ งานซ่อมบำรุงหลัก</h3>
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q3</label>
-                                    <textarea id="q3Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="เช่น:
-• Back to School Campaign - ROI 520%
-• เปิดตัวสินค้าพรีเมียม 2 รายการ
-• ความร่วมมือกับพันธมิตรใหม่ 5 ราย
-• จัด Customer Loyalty Program"></textarea>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">งานซ่อมเด่น Q3</label>
+                                    <textarea id="q3Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น:
+• ซ่อมวาล์วผีเสื้อ 22 ตัว
+• เปลี่ยนปะเก็นวาล์ว 35 ชุด
+• ตรวจสอบระบบความดัน 8 จุด
+• ซ่อมวาล์วไดอะแฟรม 12 ตัว"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-section bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-xl">
-                            <h3 class="text-lg font-semibold text-yellow-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                        <div class="form-section bg-gray-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-gray-700 mb-4">🖼️ รูปภาพประกอบ</h3>
                             <div class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q3 (เลือกได้หลายรูป)</label>
-                                    <input type="file" id="q3Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                    <input type="file" id="q3Image" accept="image/*" multiple class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent">
                                     <div class="text-xs text-gray-500 mt-1">สามารถเลือกหลายรูปพร้อมกันได้</div>
                                     <div id="q3ImagePreview" class="mt-4 grid grid-cols-2 gap-2"></div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
-                                    <input type="text" id="q3ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="เช่น Back to School Campaign">
+                                    <input type="text" id="q3ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น งานซ่อมวาล์วผีเสื้อ">
                                 </div>
                             </div>
                         </div>
@@ -262,17 +266,17 @@
                 <!-- Q4 Tab -->
                 <div class="tab-content" id="q4-tab">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">📋 แผนงาน Q4 (ตุลาคม - ธันวาคม)</h2>
-                    <div class="form-section bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold text-indigo-800 mb-4">🎯 แผนงานและเป้าหมาย</h3>
+                    <div class="form-section bg-gray-100 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-4">🎯 แผนงานและเป้าหมาย</h3>
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">แผนงาน Q4</label>
-                                <textarea id="q4Plans" rows="8" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="เช่น:
-• Holiday Season Campaign - เป้าหมาย 2.5M
-• Year-End Sale - เพิ่มยอดขาย 40%
-• New Product Launch - 3 รายการใหม่
-• Customer Retention - เพิ่มเป็น 90%
-• Brand Expansion - เข้าตลาดใหม่ 2 จังหวัด"></textarea>
+                                <textarea id="q4Plans" rows="8" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-transparent" placeholder="เช่น:
+• ซ่อมวาล์วระบบหลัก 40 ตัว
+• เปลี่ยนอะไหล่วาล์วเก่า 50 ชุด
+• ตรวจสอบระบบท่อทั้งหมด
+• อบรมทีมงานเทคนิคใหม่
+• จัดหาเครื่องมือซ่อมใหม่"></textarea>
                             </div>
                         </div>
                     </div>
@@ -281,7 +285,7 @@
 
             <!-- Save Progress -->
             <div class="text-center">
-                <button id="saveProgress" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200">
+                <button id="saveProgress" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200">
                     💾 บันทึกข้อมูล
                 </button>
             </div>
@@ -293,25 +297,25 @@
             <div class="slide active" id="slide1">
                 <div class="text-center bg-white rounded-2xl shadow-xl p-12 mb-8">
                     <div class="mb-8">
-                        <h1 class="text-5xl font-bold text-gray-800 mb-4">นำเสนอผลงานประจำปี</h1>
-                        <h2 class="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" id="yearDisplay">2568</h2>
+                        <h1 class="text-5xl font-bold text-gray-800 mb-4">นำเสนอผลงานประจำปี (End Year)</h1>
+                        <h2 class="text-6xl font-bold text-gray-700" id="yearDisplay">2568</h2>
                     </div>
-                    <div class="text-xl text-gray-600 mb-8">End Year Performance Presentation</div>
+                    <div class="text-xl text-gray-600 mb-8">Valve Maintenance Report</div>
                     <div class="grid md:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-blue-100 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-blue-800" id="nameDisplay">-</div>
-                            <div class="text-blue-600" id="positionDisplay">-</div>
+                        <div class="bg-gray-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-gray-800" id="nameDisplay">-</div>
+                            <div class="text-gray-600" id="positionDisplay">-</div>
                         </div>
-                        <div class="bg-green-100 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-green-800" id="departmentDisplay">-</div>
-                            <div class="text-green-600">แผนก</div>
+                        <div class="bg-gray-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-gray-800" id="departmentDisplay">-</div>
+                            <div class="text-gray-600">แผนก</div>
                         </div>
-                        <div class="bg-purple-100 p-4 rounded-xl">
-                            <div class="text-2xl font-bold text-purple-800" id="experienceDisplay">-</div>
-                            <div class="text-purple-600">อายุงาน</div>
+                        <div class="bg-gray-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-gray-800" id="experienceDisplay">-</div>
+                            <div class="text-gray-600">อายุงาน</div>
                         </div>
                     </div>
-                    <div class="inline-flex items-center bg-blue-100 text-blue-800 px-6 py-3 rounded-full">
+                    <div class="inline-flex items-center bg-gray-100 text-gray-800 px-6 py-3 rounded-full">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
                         </svg>
@@ -323,17 +327,17 @@
             <!-- Slide 2: Q1 Performance -->
             <div class="slide" id="slide2">
                 <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q1 (มกราคม - มีนาคม)</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">งานซ่อม Q1 (มกราคม - มีนาคม)</h2>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-purple-800 mb-3">🎯 ผลงานเด่น</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">🔧 งานซ่อมเด่น</h3>
                                 <div id="q1AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
                             </div>
                         </div>
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-orange-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">🖼️ รูปภาพประกอบ</h3>
                                 <div id="q1ImageDisplay" class="grid grid-cols-2 gap-2">
                                     <div class="text-gray-500 col-span-2 text-center">ไม่มีรูปภาพ</div>
                                 </div>
@@ -347,17 +351,17 @@
             <!-- Slide 3: Q2 Performance -->
             <div class="slide" id="slide3">
                 <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q2 (เมษายน - มิถุนายน)</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">งานซ่อม Q2 (เมษายน - มิถุนายน)</h2>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-cyan-50 to-cyan-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-cyan-800 mb-3">🚀 ผลงานเด่น</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">⚙️ งานซ่อมเด่น</h3>
                                 <div id="q2AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
                             </div>
                         </div>
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-pink-50 to-pink-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-pink-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">🖼️ รูปภาพประกอบ</h3>
                                 <div id="q2ImageDisplay" class="grid grid-cols-2 gap-2">
                                     <div class="text-gray-500 col-span-2 text-center">ไม่มีรูปภาพ</div>
                                 </div>
@@ -371,17 +375,17 @@
             <!-- Slide 4: Q3 Performance -->
             <div class="slide" id="slide4">
                 <div class="bg-white rounded-2xl shadow-xl p-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q3 (กรกฎาคม - กันยายน)</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">งานซ่อม Q3 (กรกฎาคม - กันยายน)</h2>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-emerald-800 mb-3">⭐ ผลงานเด่น</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">🛠️ งานซ่อมเด่น</h3>
                                 <div id="q3AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
                             </div>
                         </div>
                         <div class="space-y-6">
-                            <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-xl">
-                                <h3 class="text-lg font-semibold text-yellow-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                            <div class="bg-gray-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-gray-700 mb-3">🖼️ รูปภาพประกอบ</h3>
                                 <div id="q3ImageDisplay" class="grid grid-cols-2 gap-2">
                                     <div class="text-gray-500 col-span-2 text-center">ไม่มีรูปภาพ</div>
                                 </div>
@@ -396,19 +400,19 @@
             <div class="slide" id="slide5">
                 <div class="bg-white rounded-2xl shadow-xl p-8">
                     <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">แผนงาน Q4 (ตุลาคม - ธันวาคม)</h2>
-                    <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-xl">
-                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">🎯 แผนงานและเป้าหมาย</h3>
+                    <div class="bg-gray-100 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3">🎯 แผนงานและเป้าหมาย</h3>
                         <div id="q4PlansDisplay" class="text-gray-700 whitespace-pre-line">-</div>
                     </div>
                     
                     <!-- Summary -->
-                    <div class="text-center mt-8 p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                    <div class="text-center mt-8 p-8 bg-gray-100 rounded-xl">
                         <h3 class="text-2xl font-bold text-gray-800 mb-4">สรุปการนำเสนอ</h3>
-                        <div class="inline-flex items-center bg-green-100 text-green-800 px-6 py-3 rounded-full">
+                        <div class="inline-flex items-center bg-gray-200 text-gray-800 px-6 py-3 rounded-full">
                             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
-                            ขอบคุณสำหรับการรับฟัง - พร้อมสำหรับความท้าทายใหม่
+                            ขอบคุณสำหรับการรับฟัง - พร้อมสำหรับงานซ่อมใหม่
                         </div>
                     </div>
                 </div>
@@ -425,14 +429,14 @@
                     </button>
                     
                     <div class="flex space-x-2">
-                        <button class="slide-dot w-3 h-3 rounded-full bg-blue-500" data-slide="1"></button>
+                        <button class="slide-dot w-3 h-3 rounded-full bg-gray-600" data-slide="1"></button>
                         <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="2"></button>
                         <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="3"></button>
                         <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="4"></button>
                         <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="5"></button>
                     </div>
                     
-                    <button id="nextBtn" class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors duration-200">
+                    <button id="nextBtn" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-full transition-colors duration-200">
                         ถัดไป
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -496,6 +500,42 @@
         setupImagePreview('q2Image', 'q2ImagePreview');
         setupImagePreview('q3Image', 'q3ImagePreview');
 
+        // Calculate work experience
+        function calculateWorkExperience(startDate) {
+            if (!startDate) return '';
+            
+            const start = new Date(startDate);
+            const today = new Date();
+            
+            let years = today.getFullYear() - start.getFullYear();
+            let months = today.getMonth() - start.getMonth();
+            let days = today.getDate() - start.getDate();
+            
+            if (days < 0) {
+                months--;
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+            
+            let result = '';
+            if (years > 0) result += `${years} ปี `;
+            if (months > 0) result += `${months} เดือน `;
+            if (days > 0 && years === 0 && months === 0) result += `${days} วัน`;
+            
+            return result.trim() || '0 วัน';
+        }
+
+        // Auto-calculate work experience when start date changes
+        document.getElementById('startDate').addEventListener('change', function() {
+            const workExp = calculateWorkExperience(this.value);
+            document.getElementById('workExperience').value = workExp;
+        });
+
         // Save progress functionality
         document.getElementById('saveProgress').addEventListener('click', () => {
             const data = {
@@ -503,6 +543,7 @@
                 position: document.getElementById('position').value,
                 department: document.getElementById('department').value,
                 supervisor: document.getElementById('supervisor').value,
+                startDate: document.getElementById('startDate').value,
                 workExperience: document.getElementById('workExperience').value,
                 presentationYear: document.getElementById('presentationYear').value,
                 q1Achievements: document.getElementById('q1Achievements').value,
@@ -540,6 +581,11 @@
                     const element = document.getElementById(key);
                     if (element) {
                         element.value = data[key];
+                        // Recalculate work experience if start date is loaded
+                        if (key === 'startDate' && data[key]) {
+                            const workExp = calculateWorkExperience(data[key]);
+                            document.getElementById('workExperience').value = workExp;
+                        }
                     }
                 });
             }
@@ -744,5 +790,5 @@
             showSlide(1);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ee868b65d34038',t:'MTc1NzgzODY2MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ee957647bb4038',t:'MTc1NzgzOTI3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
