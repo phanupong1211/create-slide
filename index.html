@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างสไลด์นำเสนอผลงานประจำปี</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-section {
+            transition: all 0.3s ease;
+        }
+        
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-preview {
+            max-width: 200px;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+
+        .preview-mode .form-container {
+            display: none !important;
+        }
+
+        .preview-mode .presentation-container {
+            display: block !important;
+        }
+
+        .form-mode .form-container {
+            display: block !important;
+        }
+
+        .form-mode .presentation-container {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-gray-800">🎯 สร้างสไลด์นำเสนอผลงานประจำปี</h1>
+                <div class="flex items-center space-x-4">
+                    <button id="toggleMode" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
+                        👁️ ดูตัวอย่าง
+                    </button>
+                    <button id="exportBtn" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition-colors duration-200">
+                        📄 ส่งออก PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Form Container -->
+        <div class="form-container">
+            <!-- Tab Navigation -->
+            <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+                <div class="flex flex-wrap gap-2 mb-6">
+                    <button class="tab-button active px-4 py-2 rounded-lg bg-gray-100" data-tab="basic">
+                        📝 ข้อมูลพื้นฐาน
+                    </button>
+                    <button class="tab-button px-4 py-2 rounded-lg bg-gray-100" data-tab="q1">
+                        🎯 ผลงาน Q1
+                    </button>
+                    <button class="tab-button px-4 py-2 rounded-lg bg-gray-100" data-tab="q2">
+                        🚀 ผลงาน Q2
+                    </button>
+                    <button class="tab-button px-4 py-2 rounded-lg bg-gray-100" data-tab="q3">
+                        ⭐ ผลงาน Q3
+                    </button>
+                    <button class="tab-button px-4 py-2 rounded-lg bg-gray-100" data-tab="q4">
+                        📋 แผนงาน Q4
+                    </button>
+                </div>
+
+                <!-- Basic Info Tab -->
+                <div class="tab-content active" id="basic-tab">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">📝 ข้อมูลพื้นฐาน</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-section bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-blue-800 mb-4">👤 ข้อมูลส่วนตัว</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ชื่อ - นามสกุล</label>
+                                    <input type="text" id="fullName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="เช่น สมชาย ใจดี">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ตำแหน่งงาน</label>
+                                    <input type="text" id="position" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="เช่น Senior Marketing Specialist">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">แผนก</label>
+                                    <input type="text" id="department" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="เช่น แผนกการตลาด">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section bg-gradient-to-r from-green-50 to-green-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-green-800 mb-4">🏢 ข้อมูลการทำงาน</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">หัวหน้างาน</label>
+                                    <input type="text" id="supervisor" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="เช่น คุณสุนิสา วงศ์ใหญ่">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">อายุงาน (ไม่บังคับ)</label>
+                                    <input type="text" id="workExperience" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="เช่น 3 ปี 8 เดือน">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ปีที่นำเสนอ</label>
+                                    <input type="number" id="presentationYear" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="2568" value="2568">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q1 Tab -->
+                <div class="tab-content" id="q1-tab">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🎯 ผลงาน Q1 (มกราคม - มีนาคม)</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-section bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-purple-800 mb-4">📊 ผลงานหลัก</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q1</label>
+                                    <textarea id="q1Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="เช่น:
+• เพิ่มยอดขายได้ 125% ของเป้าหมาย
+• ขยายฐานลูกค้าใหม่ 15,000 ราย
+• เปิดตัวสินค้าใหม่ 3 รายการสำเร็จ
+• ได้รับรางวัล Best Campaign Q1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section bg-gradient-to-r from-orange-50 to-orange-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-orange-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q1</label>
+                                    <input type="file" id="q1Image" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                                    <div id="q1ImagePreview" class="mt-4"></div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
+                                    <input type="text" id="q1ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent" placeholder="เช่น งาน Product Launch Event">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 Tab -->
+                <div class="tab-content" id="q2-tab">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">🚀 ผลงาน Q2 (เมษายน - มิถุนายน)</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-section bg-gradient-to-r from-cyan-50 to-cyan-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-cyan-800 mb-4">📊 ผลงานหลัก</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q2</label>
+                                    <textarea id="q2Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent" placeholder="เช่น:
+• เปิดตัว Summer Campaign - ยอดขาย 3.2M
+• จัด Influencer Marketing กับ 15 คน
+• พัฒนา Mobile App ใหม่ - Download 50K
+• ขยายช่องทางขาย Online 3 Platform"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section bg-gradient-to-r from-pink-50 to-pink-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-pink-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q2</label>
+                                    <input type="file" id="q2Image" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                    <div id="q2ImagePreview" class="mt-4"></div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
+                                    <input type="text" id="q2ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent" placeholder="เช่น Summer Campaign Launch">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q3 Tab -->
+                <div class="tab-content" id="q3-tab">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">⭐ ผลงาน Q3 (กรกฎาคม - กันยายน)</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-section bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-emerald-800 mb-4">📊 ผลงานหลัก</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">ผลงานเด่น Q3</label>
+                                    <textarea id="q3Achievements" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="เช่น:
+• Back to School Campaign - ROI 520%
+• เปิดตัวสินค้าพรีเมียม 2 รายการ
+• ความร่วมมือกับพันธมิตรใหม่ 5 ราย
+• จัด Customer Loyalty Program"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-xl">
+                            <h3 class="text-lg font-semibold text-yellow-800 mb-4">🖼️ รูปภาพประกอบ</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">อัปโหลดรูปภาพ Q3</label>
+                                    <input type="file" id="q3Image" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                                    <div id="q3ImagePreview" class="mt-4"></div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">คำอธิบายรูปภาพ</label>
+                                    <input type="text" id="q3ImageCaption" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent" placeholder="เช่น Back to School Campaign">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q4 Tab -->
+                <div class="tab-content" id="q4-tab">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">📋 แผนงาน Q4 (ตุลาคม - ธันวาคม)</h2>
+                    <div class="form-section bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-4">🎯 แผนงานและเป้าหมาย</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">แผนงาน Q4</label>
+                                <textarea id="q4Plans" rows="8" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" placeholder="เช่น:
+• Holiday Season Campaign - เป้าหมาย 2.5M
+• Year-End Sale - เพิ่มยอดขาย 40%
+• New Product Launch - 3 รายการใหม่
+• Customer Retention - เพิ่มเป็น 90%
+• Brand Expansion - เข้าตลาดใหม่ 2 จังหวัด"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Save Progress -->
+            <div class="text-center">
+                <button id="saveProgress" class="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium transition-colors duration-200">
+                    💾 บันทึกข้อมูล
+                </button>
+            </div>
+        </div>
+
+        <!-- Presentation Container -->
+        <div class="presentation-container" style="display: none;">
+            <!-- Slide 1: Title -->
+            <div class="slide active" id="slide1">
+                <div class="text-center bg-white rounded-2xl shadow-xl p-12 mb-8">
+                    <div class="mb-8">
+                        <h1 class="text-5xl font-bold text-gray-800 mb-4">นำเสนอผลงานประจำปี</h1>
+                        <h2 class="text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" id="yearDisplay">2568</h2>
+                    </div>
+                    <div class="text-xl text-gray-600 mb-8">End Year Performance Presentation</div>
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-blue-800" id="nameDisplay">-</div>
+                            <div class="text-blue-600" id="positionDisplay">-</div>
+                        </div>
+                        <div class="bg-green-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-green-800" id="departmentDisplay">-</div>
+                            <div class="text-green-600">แผนก</div>
+                        </div>
+                        <div class="bg-purple-100 p-4 rounded-xl">
+                            <div class="text-2xl font-bold text-purple-800" id="experienceDisplay">-</div>
+                            <div class="text-purple-600">อายุงาน</div>
+                        </div>
+                    </div>
+                    <div class="inline-flex items-center bg-blue-100 text-blue-800 px-6 py-3 rounded-full">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                        </svg>
+                        หัวหน้างาน: <span id="supervisorDisplay">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Q1 Performance -->
+            <div class="slide" id="slide2">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q1 (มกราคม - มีนาคม)</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-purple-50 to-purple-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-purple-800 mb-3">🎯 ผลงานเด่น</h3>
+                                <div id="q1AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-orange-50 to-orange-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-orange-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                                <div id="q1ImageDisplay" class="text-center">
+                                    <div class="text-gray-500">ไม่มีรูปภาพ</div>
+                                </div>
+                                <div id="q1CaptionDisplay" class="text-center text-sm text-gray-600 mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Q2 Performance -->
+            <div class="slide" id="slide3">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q2 (เมษายน - มิถุนายน)</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-cyan-50 to-cyan-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-cyan-800 mb-3">🚀 ผลงานเด่น</h3>
+                                <div id="q2AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-pink-50 to-pink-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-pink-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                                <div id="q2ImageDisplay" class="text-center">
+                                    <div class="text-gray-500">ไม่มีรูปภาพ</div>
+                                </div>
+                                <div id="q2CaptionDisplay" class="text-center text-sm text-gray-600 mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Q3 Performance -->
+            <div class="slide" id="slide4">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ผลงาน Q3 (กรกฎาคม - กันยายน)</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-emerald-50 to-emerald-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-emerald-800 mb-3">⭐ ผลงานเด่น</h3>
+                                <div id="q3AchievementsDisplay" class="text-gray-700 whitespace-pre-line">-</div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 p-6 rounded-xl">
+                                <h3 class="text-lg font-semibold text-yellow-800 mb-3">🖼️ รูปภาพประกอบ</h3>
+                                <div id="q3ImageDisplay" class="text-center">
+                                    <div class="text-gray-500">ไม่มีรูปภาพ</div>
+                                </div>
+                                <div id="q3CaptionDisplay" class="text-center text-sm text-gray-600 mt-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Q4 Plan -->
+            <div class="slide" id="slide5">
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">แผนงาน Q4 (ตุลาคม - ธันวาคม)</h2>
+                    <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">🎯 แผนงานและเป้าหมาย</h3>
+                        <div id="q4PlansDisplay" class="text-gray-700 whitespace-pre-line">-</div>
+                    </div>
+                    
+                    <!-- Summary -->
+                    <div class="text-center mt-8 p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">สรุปการนำเสนอ</h3>
+                        <div class="inline-flex items-center bg-green-100 text-green-800 px-6 py-3 rounded-full">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            ขอบคุณสำหรับการรับฟัง - พร้อมสำหรับความท้าทายใหม่
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="fixed bottom-6 left-1/2 transform -translate-x-1/2">
+                <div class="bg-white rounded-full shadow-lg px-6 py-3 flex items-center space-x-4">
+                    <button id="prevBtn" class="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-200">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        ก่อนหน้า
+                    </button>
+                    
+                    <div class="flex space-x-2">
+                        <button class="slide-dot w-3 h-3 rounded-full bg-blue-500" data-slide="1"></button>
+                        <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="2"></button>
+                        <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="3"></button>
+                        <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="4"></button>
+                        <button class="slide-dot w-3 h-3 rounded-full bg-gray-300" data-slide="5"></button>
+                    </div>
+                    
+                    <button id="nextBtn" class="flex items-center px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-colors duration-200">
+                        ถัดไป
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentSlideIndex = 1;
+        const totalSlides = 5;
+        let isPreviewMode = false;
+
+        // Tab functionality
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+                
+                // Update active tab button
+                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update active tab content
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+
+        // Image preview functionality
+        function setupImagePreview(inputId, previewId) {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const preview = document.getElementById(previewId);
+                
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.innerHTML = `<img src="${e.target.result}" class="image-preview mx-auto" alt="Preview">`;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.innerHTML = '';
+                }
+            });
+        }
+
+        // Setup image previews
+        setupImagePreview('q1Image', 'q1ImagePreview');
+        setupImagePreview('q2Image', 'q2ImagePreview');
+        setupImagePreview('q3Image', 'q3ImagePreview');
+
+        // Save progress functionality
+        document.getElementById('saveProgress').addEventListener('click', () => {
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                position: document.getElementById('position').value,
+                department: document.getElementById('department').value,
+                supervisor: document.getElementById('supervisor').value,
+                workExperience: document.getElementById('workExperience').value,
+                presentationYear: document.getElementById('presentationYear').value,
+                q1Achievements: document.getElementById('q1Achievements').value,
+                q1ImageCaption: document.getElementById('q1ImageCaption').value,
+                q2Achievements: document.getElementById('q2Achievements').value,
+                q2ImageCaption: document.getElementById('q2ImageCaption').value,
+                q3Achievements: document.getElementById('q3Achievements').value,
+                q3ImageCaption: document.getElementById('q3ImageCaption').value,
+                q4Plans: document.getElementById('q4Plans').value
+            };
+
+            localStorage.setItem('presentationData', JSON.stringify(data));
+            
+            // Show success message
+            const button = document.getElementById('saveProgress');
+            const originalText = button.innerHTML;
+            button.innerHTML = '✅ บันทึกแล้ว!';
+            button.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+            button.classList.add('bg-green-500', 'hover:bg-green-600');
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.classList.remove('bg-green-500', 'hover:bg-green-600');
+                button.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }, 2000);
+        });
+
+        // Load saved data
+        function loadSavedData() {
+            const savedData = localStorage.getItem('presentationData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        element.value = data[key];
+                    }
+                });
+            }
+        }
+
+        // Update presentation display
+        function updatePresentationDisplay() {
+            // Basic info
+            document.getElementById('nameDisplay').textContent = document.getElementById('fullName').value || '-';
+            document.getElementById('positionDisplay').textContent = document.getElementById('position').value || '-';
+            document.getElementById('departmentDisplay').textContent = document.getElementById('department').value || '-';
+            document.getElementById('supervisorDisplay').textContent = document.getElementById('supervisor').value || '-';
+            document.getElementById('experienceDisplay').textContent = document.getElementById('workExperience').value || '-';
+            document.getElementById('yearDisplay').textContent = document.getElementById('presentationYear').value || '2568';
+
+            // Q1
+            document.getElementById('q1AchievementsDisplay').textContent = document.getElementById('q1Achievements').value || '-';
+            document.getElementById('q1CaptionDisplay').textContent = document.getElementById('q1ImageCaption').value || '';
+            
+            // Q2
+            document.getElementById('q2AchievementsDisplay').textContent = document.getElementById('q2Achievements').value || '-';
+            document.getElementById('q2CaptionDisplay').textContent = document.getElementById('q2ImageCaption').value || '';
+            
+            // Q3
+            document.getElementById('q3AchievementsDisplay').textContent = document.getElementById('q3Achievements').value || '-';
+            document.getElementById('q3CaptionDisplay').textContent = document.getElementById('q3ImageCaption').value || '';
+            
+            // Q4
+            document.getElementById('q4PlansDisplay').textContent = document.getElementById('q4Plans').value || '-';
+
+            // Update images
+            updateImageDisplay('q1Image', 'q1ImageDisplay');
+            updateImageDisplay('q2Image', 'q2ImageDisplay');
+            updateImageDisplay('q3Image', 'q3ImageDisplay');
+        }
+
+        function updateImageDisplay(inputId, displayId) {
+            const input = document.getElementById(inputId);
+            const display = document.getElementById(displayId);
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    display.innerHTML = `<img src="${e.target.result}" class="image-preview mx-auto" alt="Uploaded image">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                display.innerHTML = '<div class="text-gray-500">ไม่มีรูปภาพ</div>';
+            }
+        }
+
+        // Toggle mode functionality
+        document.getElementById('toggleMode').addEventListener('click', () => {
+            isPreviewMode = !isPreviewMode;
+            const button = document.getElementById('toggleMode');
+            
+            if (isPreviewMode) {
+                // Switch to preview mode
+                document.body.className = 'preview-mode bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen';
+                button.innerHTML = '✏️ แก้ไขข้อมูล';
+                updatePresentationDisplay();
+                currentSlideIndex = 1;
+                showSlide(1);
+            } else {
+                // Switch to form mode
+                document.body.className = 'form-mode bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen';
+                button.innerHTML = '👁️ ดูตัวอย่าง';
+            }
+        });
+
+        // Slide navigation
+        function showSlide(slideNumber) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            document.getElementById(`slide${slideNumber}`).classList.add('active');
+            
+            // Update navigation dots
+            document.querySelectorAll('.slide-dot').forEach((dot, index) => {
+                if (index + 1 === slideNumber) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-blue-500');
+                } else {
+                    dot.classList.remove('bg-blue-500');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+            
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (slideNumber === 1) {
+                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+            
+            if (slideNumber === totalSlides) {
+                nextBtn.innerHTML = `
+                    เสร็จสิ้น
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                `;
+                nextBtn.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+                nextBtn.classList.add('bg-green-500', 'hover:bg-green-600');
+            } else {
+                nextBtn.innerHTML = `
+                    ถัดไป
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                `;
+                nextBtn.classList.remove('bg-green-500', 'hover:bg-green-600');
+                nextBtn.classList.add('bg-blue-500', 'hover:bg-blue-600');
+            }
+        }
+
+        // Navigation event listeners
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentSlideIndex > 1) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentSlideIndex < totalSlides) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            } else {
+                alert('🎉 การนำเสนอเสร็จสิ้นแล้ว!\n\nขอบคุณสำหรับการรับฟัง!');
+            }
+        });
+
+        // Dot navigation
+        document.querySelectorAll('.slide-dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlideIndex = index + 1;
+                showSlide(currentSlideIndex);
+            });
+        });
+
+        // Export functionality
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            if (!isPreviewMode) {
+                alert('กรุณาเข้าสู่โหมดดูตัวอย่างก่อนส่งออก PDF');
+                return;
+            }
+            
+            // Show all slides for printing
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.style.display = 'block';
+                slide.classList.add('active');
+            });
+            
+            // Hide navigation for printing
+            document.querySelector('nav').style.display = 'none';
+            
+            window.print();
+            
+            // Restore normal view after printing
+            setTimeout(() => {
+                document.querySelectorAll('.slide').forEach((slide, index) => {
+                    if (index + 1 !== currentSlideIndex) {
+                        slide.style.display = 'none';
+                        slide.classList.remove('active');
+                    }
+                });
+                document.querySelector('nav').style.display = 'block';
+            }, 1000);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (isPreviewMode) {
+                if (e.key === 'ArrowRight' && currentSlideIndex < totalSlides) {
+                    currentSlideIndex++;
+                    showSlide(currentSlideIndex);
+                } else if (e.key === 'ArrowLeft' && currentSlideIndex > 1) {
+                    currentSlideIndex--;
+                    showSlide(currentSlideIndex);
+                }
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.className = 'form-mode bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen';
+            loadSavedData();
+            showSlide(1);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97ee7cba76af35aa',t:'MTc1NzgzODI1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
